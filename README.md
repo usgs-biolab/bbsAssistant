@@ -1,7 +1,7 @@
 **bbsAssistant**: An R package for downloading and handling data and
 information from the North American Breeding Bird Survey.
 ================
-Last updated: 2020-02-27
+Last updated: 2020-07-16
 
 <!-- README.md is generated from README.Rmd. Please edit that file and render to push updates.-->
 
