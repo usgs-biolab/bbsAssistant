@@ -1,38 +1,30 @@
-citHeader("To cite bbsAssistant in publications use:")
+citHeader("To cite the R package bbsAssistant, please use:")
 
 citEntry(
-  entry    = "Article",
-  title    = "",
-  author   = "",
-  journal  = "",
-  year     = "",
-  volume   = "",
-  number   = "",
-  pages    = "",
-  url      = "",
+  entry    = "Misc",
+  title    = "bbsAssistant: An R package for downloading and handling data and information from the North American Breeding Bird Survey.",
+  author   = "Burnett, J.L., L.S. Wszola, and G. Palomo-Muñoz",
+  journal  = "Journal of Open Source Software",
+  doi      = "10.21105/joss.01768",
+  url      = "https://joss.theoj.org/papers/10.21105/joss.01768",
   textVersion = paste(
-    )
+       "Burnett, J.L., L.S. Wszola, and G. Palomo-Muñoz (2019). bbsAssistant: An R package for downloading and handling data and information from the North American Breeding Bird Survey. Journal of Open Source Software. DOI:10.21105/joss.01768"     
+)
 )
 
-
-citHeader("To cite the most recent version Breeding Bird Survey dataset in publication, please use:")
+citHeader("To cite the most recent version of the Breeding Bird Survey dataset, please use:")
 
 citEntry(
-  entry = "misc",
-  title = "North American Breeding Bird Survey Dataset 1966 - 2018",
-  version = "2017.0",
-  publisher = "U.S. Geological Survey, Patuxent Wildlife Research Center.",
-  author = "Pardieck, Keith L. and Ziolkowski Jr., Dave J. and Lutmerding, M. and Aponte, Veronica and Hudson, Marie-Anne R.",
-  textVersion = "Pardieck, K.L., D.J. Ziolkowski Jr., M. Lutmerding, V. Aponte and M-A.R. Hudson. 2019. North American Breeding Bird Survey Dataset 1966 - 2018, version 2018.0. U.S. Geological Survey, Patuxent Wildlife Research Center. https://doi.org/10.5066/P9HE8XYJ."
+  entry    = "Misc",
+  title    = "North American Breeding Bird Survey Dataset 1966-2019: U.S. Geological Survey data release",
+  author   = "Burnett, J.L., L.S. Wszola, and G. Palomo-Muñoz",
+  doi      = "10.50666/P9J6QUF6",
+  url      = "https://doi.org/10.5066/P9J6QUF6",
+  textVersion = paste(
+       "Pardieck, K.L., Ziolkowski Jr., D.J., Lutmerding, M., Aponte, V.I., and Hudson, M-A.R., 2020, North American Breeding Bird Survey Dataset 1966 - 2019: U.S. Geological Survey data release, https://doi.org/10.5066/P9J6QUF6"     
+)
 )
 
 
-citHeader("To cite the most recent version of the Breeding Bird Survey analysis and results, please use what follows. For alternative versions, please visit http://www.mbr-pwrc.usgs.gov/bbs")
 
-citEntry(
-entry="misc",
-  title    = "The North American Breeding Bird Survey, Results and Analysis 1966-2015",
-  version   = "2.07.2017",
-  publisher  = "U.S. Geological Survey, Patuxent Wildlife Research Center",
-  textVersion     = "Sauer, J. R., D. K. Niven, J. E. Hines, D. J. Ziolkowski, Jr, K. L. Pardieck, J. E. Fallon, and W. A. Link. 2017. The North American Breeding Bird Survey, Results and Analysis 1966 - 2015. Version 2.07.2017 USGS Patuxent Wildlife Research Center, Laurel, MD"
-)
+citHeader("To cite a different version of the Breeding Bird Survey dataset, please visit the [project page](https://www.sciencebase.gov/catalog/item/52b1dfa8e4b0d9b325230cd9).") 

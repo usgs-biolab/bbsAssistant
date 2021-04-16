@@ -1,59 +1,94 @@
-#' Trend estimates for the core BBS area, 1966-2017
-#' @format A data frame:
+# bbs_obs  (most recent version of bbs observations) --------------------------------------------------------------
+#' Contains the most recent release of the BBS observations dataset.
+#' @format A data frame with 6797797 rows and 14 columns (as of 2020-09-09).
 #' \describe{
-#'   \item{Credibility Code}{Color code corresponding to the quality of the data for the species/region combination: R=Red, Y=Yellow, B=Blue. Descriptions of the categories can be found at \url{https://www.mbr-pwrc.usgs.gov/bbs/trendmap17/credinfo.html}}
-#'   \item{Sample Size}{Color code corresponding to the quality of the data for the species/region combination: R=Red, Y=Yellow, B=Blue. Descriptions of the categories can be found at  \url{https://www.mbr-pwrc.usgs.gov/bbs/trendmap17/credinfo.html}}
-#'   \item{Precision}{Color code corresponding to the quality of the data for the species/region combination: R=Red, Y=Yellow, B=Blue. Descriptions of the categories can be found at  \url{https://www.mbr-pwrc.usgs.gov/bbs/trendmap17/credinfo.html}}
-#'   \item{Abundance}{Color code corresponding to the quality of the data for the species/region combination: R=Red, Y=Yellow, B=Blue. Descriptions of the categories can be found at  \url{https://www.mbr-pwrc.usgs.gov/bbs/trendmap17/credinfo.html}}
-#'   \item{Significance}{Color code corresponding to the quality of the data for the species/region combination: R=Red, Y=Yellow, B=Blue. Descriptions of the categories can be found at \url{https://www.mbr-pwrc.usgs.gov/bbs/trendmap17/credinfo.html}}
-#'   \item{AOU}{Five-digit species identification number according to the bird species checklist of the American Ornithologist Union.}
-#'   \item{Species Name}{Common name accoridng to the bird species checklist of the American Ornithologists Union}
-#'   \item{Region Name}{Full name of the region in North American according to its region code}
-#'   \item{N Routes}{Three-digit-code that identifies the route; unique within states}
-#'   \item{Trend}{Ratio of annual indices for the first and last year of the interval of interest}
-#'   \item{2.5\% CI}{Lower 95\% confidence interval of the annual index of abundance}
-#'   \item{97.5\% CI}{Upper 95\% confidence interval of the annual index of abundance}
-#'   \item{Relative Abundance}{Estimated relative abundance of species/region}
-#'         } 
-#' @source \url{https://www.mbr-pwrc.usgs.gov/bbs/BBS_1966-2017_core_trend_revised_v2.csv}
-"trend_ests_core_1966to2017"
-
-#' Annual population trend indices for species/regions in the expanded BBS region, 1966-2017
-#' @format A data frame:
-#' \describe{
-#'   \item{AOU}{Five digit species identification number according to the bird species checklist of the American Ornithologist Union.}
-#'   \item{Region}{Regions are states, Provinces, Bird Conservation Regions, BBS Regions, Canada excluding Newfoundland and Yukon, the lower 48 US states, and survey-wide excluding Newfoundland and Alaska.}
-#'   \item{Year}{Four digit year of survey, from 1966-2017}
-#'   \item{Index}{Annual index of species/region abundance estimated using a hierarchical model}
-#'   \item{2.5\% CI}{Lower 95\% confidence interval of the annual index of abundance}
-#'   \item{97.5\% CI}{Upper 95\% confidence interval of the annual index of abundance}
-#' }
-#' @source 
-#'   \url{https://www.mbr-pwrc.usgs.gov/bbs/inde_1993-2017_expanded.csv}
-"annual_index_expanded_1966to2017"
-
-#' Annual population trend indices for species/regions in the core BBS region, 1966-2017
-#' @format A data frame:
-#' \describe{
-#'   \item{AOU}{Five digit species identification number according to the bird species checklist of the American Ornithologist Union.}
-#'   \item{Region}{Regions are states, Provinces, Bird Conservation Regions, BBS Regions, Canada excluding Newfoundland and Yukon, the lower 48 US states, and survey-wide excluding Newfoundland and Alaska.}
-#'   \item{Year}{Four digit year of survey, from 1966-2017}
-#'   \item{Index}{Annual index of species/region abundance estimated using a hierarchical model}
-#'   \item{2.5\% CI}{Lower 95\% confidence interval of the annual index of abundance}
-#'   \item{97.5\% CI}{Upper 95\% confidence interval of the annual index of abundance}
-#' }
-#' @source \url{https://www.mbr-pwrc.usgs.gov/bbs/inde_1966-2017_core_v2.csv}
-"annual_index_core_1966to2017"
-
-
-
-#' Country and state codes and associated zip filenames 
-#' @format A data frame:
-#' \describe{
+#'   \item{AOU}{Numeric AOU code.}
+#'   \item{Count10}{...}
+#'   \item{Count20}{...}
+#'   \item{Count30}{...}
+#'   \item{Count40}{...}
+#'   \item{Count50}{...}
 #'   \item{CountryNum}{BBS country codes associated with United States-840, Mexico-484, and Canada-124}
-#'   \item{StateNum}{BBS state numbers associated with each 'State' and 'CountryNum'}
+#'   \item{Route}{...}
+#'   \item{RouteDataID}{...}
+#'   \item{RPID}{Route run type}
+#'   \item{SpeciesTotal}{...}
 #'   \item{State}{The proper name of the US or Mexican state or Canadian province}
-#'   \item{zip_states}{The filename of the .zip compressed BBS count data located on the FTP server. These files do not exist for Mexican states, so == NA}
+#'   \item{StateNum}{BBS state numbers associated with each 'State' and 'CountryNum'}
+#'   \item{StopTotal}{Number of individuals of a given species ('AOU') identified by the observer at the end of every 10 stop within the route.}
+#'   \item{Year}{Year in which the BBS observations was taken.}
 #' }
-#' @source \url{ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/RegionCodes.txt}
+#' @source \url{https://www.sciencebase.gov/catalog/item/52b1dfa8e4b0d9b325230cd9}
+"bbs_obs"
+
+# sb_items ------------------------------------------------------------
+#' A lookup table that is manually updated by the package maintainers. It is used as a quick reference to identify which datasets are available for import from ScienceBase, and are compatible with this package.
+#' @format A data frame containing N rows and 5 columns
+#' \describe{
+#'   \item{sb_parent}{ScienceBase unique identifier associated with the parent item (often the project identifier).}
+#'   \item{sb_item}{ScienceBase unique identifier associated with each dataset release.}
+#'   \item{sb_title}{Title of the item as retrieved from ScienceBase.}
+#'   \item{release_year}{Year of the dataset release.}
+#'   \item{data_type}{One of c("observations", "results"). ScienceBase items are assigned one of the two to distinguish between the analysis results (results) and the original observations dataset release (observations).}
+#'   \item{year_start}{Earliest year of data in the associated dataset.}
+#'   \item{year_end}{Earliest year of data in the associated dataset.}
+#'   \item{legacy_format}{Used to specify whether the observations dataset is in a different format than more recent releases. This is defined by maintainers but based off of ScienceBase documentation.}
+#' }
+"sb_items"
+
+# region_codes ------------------------------------------------------------
+#' Country and state codes and associated zip filenames
+#' @format A data frame:
+#' \describe{
+#'   \item{CountryNum}{Integer. BBS country codes associated with United States-840, Mexico-484, and Canada-124}
+#'   \item{StateNum}{Integer. BBS state numbers associated with each 'StateNum' and 'CountryNum'}
+#'   \item{State}{Character. The proper name of the US or Mexican state or Canadian province.}
+#'   \item{zip_states}{Character. The filename of the .zip compressed BBS count data located on the FTP server. These files do not exist for Mexican states, so == NA}
+#' }
+#' @source \url{https://www.sciencebase.gov/catalog/item/52b1dfa8e4b0d9b325230cd9}
 "region_codes"
+
+# species_list (currently just aou data from url) --------------------------------------------------------------
+#' Taxonomic information from the American Ornithological Society's AOU code.
+#' @format A data frame with 2158 rows and 17 variables.
+#' \describe{
+#'   \item{AOU}{Numeric AOU code.}
+#'   \item{avibase.id}{Identifier for Avibase database. Source \url{http://avibase.bsc-eoc.org/}}
+#'   \item{rank}{...}
+#'   \item{common_name}{English common name.}
+#'   \item{order}{Phylogenetic order.}
+#'   \item{family}{Phylogenetic family}
+#'   \item{subfamily}{Phylogenetic sub-family}
+#'   \item{genus}{Phylogenetic genera}
+#'   \item{species}{Phylogenetic species epithet}
+#'   \item{status_accidental}{...}
+#'   \item{status_hawaiin}{}
+#'   \item{status_introduced}{...}
+#'   \item{status_misplaced}{...}
+#'   \item{status_extinct}{...}
+#'   \item{status_nonbreeding}{...}
+#' }
+#' @source Most recent version of AOU at \url{http://checklist.aou.org/taxa.csv?type=charset%3Dutf-8%3Bsubspecies%3Dno%3B}
+#' @source Most recent version of species list associated with BBS data at SpeciesList.txt at \url{http://checklist.aou.org/taxa.csv?type=charset%3Dutf-8%3Bsubspecies%3Dno%3B"}
+"species_list"
+
+# sauer_results  (most recent version of bbs observations) --------------------------------------------------------------
+#' Contains the most recent release of the BBS observations dataset.
+#' The data object is a list, wherein the list names (names(sauer_results)) correspond with the .csv filenames provided in ScienceBase; call `bbsAssistant::sb_items` for more information.
+#' @format A list containing a varying number of data frames associated with the most recent release of analysis results by Sauer et al. Please visit the `source` for more information, including metadata which describes each results file.
+#'  \describe{
+#'  NOTE: THE COLUMNS HERE ARE DESCRIBED IN GREATER DETAIL AT THE SCIENCEBASE ITEM (see "sb_items" hyperlink for relevant sb_id).
+#'  NOTE ALSO: NOT ALL COLUMNS ARE DESCRIBE HERE. CURRENTLY, ONLY THE COLUMNS ASSOCIATED WITH THE 2020 RELEASE ARE DESCRIBED.
+#'  @details The object, sauer_results, comprises (currently) 4 data frames, each containing the results of different analyses as described in original metadata.
+#'  \itemize{ # the list
+#'  \item{@param BBS_1966-2018_core_best_trend ...} 
+#'  \item{@param BBS_1993-2018_expanded_trend_best ... } 
+#'  \item{@param inde_best_1993-2018_expanded ... } 
+#'  \item{@param inde_best_1966-2018_core ... } 
+#'  }
+#' 
+#' @source \url{https://www.sciencebase.gov/catalog/item/5ea1e02c82cefae35a16ebc4}
+#' 
+"sauer_results"
+
+# TBA cws_results -----------------------------------------------------------

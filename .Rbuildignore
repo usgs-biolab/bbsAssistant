@@ -1,5 +1,4 @@
 ^codecov\.yml$
-^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
@@ -10,3 +9,6 @@
 ^cran-comments\.md$
 ^data-raw$
 ^\.github$
+^_pkgdown\.yml$
+^CODE_OF_CONDUCT\.md$
+^LICENSE\.md$

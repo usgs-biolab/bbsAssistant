@@ -1,0 +1,83 @@
+---
+title: "simple"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{simple}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+  %\usepackage[UTF-8]{inputenc}  
+---
+
+```{r, include = FALSE, echo=FALSE}
+knitr::opts_chunk$set(
+    eval=FALSE,
+  collapse = TRUE,
+  comment = "#>", cache = TRUE
+)
+```
+
+```{r setup}
+remotes::install_github(repo="trashbirdecology/bbsAssistant", ref="main", force=FALSE)
+library(bbsAssistant)
+library(dplyr)
+library(kableExtra)
+```
+
+```{r dataavail}
+data(package="bbsAssistant")
+```
+
+```{r load_recent_data, eval=FALSE}
+bbs_obs <- bbsAssistant::bbs_obs # get only the observations
+```
+
+Get the most recent bbs observations, routes, and weather
+<!-- for some reason the following command (get_bbs_data())  won't run inside a chunk...getting a curl fetch error... -->
+`r bbs_data <- get_bbs_data() # make take a hot minute if you` 
+```{r get_data}
+df <- left_join(bbs_data$observations, bbs_data$routes)  # lazy but whatever
+rm(bbs_data) # clear list, unless you want it still or need the weather or species
+```
+
+```{r takealook}
+# glimpse(bbs_data$observations) # the most recent (unless otherwise specified) bbs observations
+# glimpse(bbs_data$routes) # route data associated 
+# glimpse(bbs_data$weather) # weather associated with route data
+```
+
+```{r summary}
+# grab data from Florida
+ind <- bbsAssistant::region_codes %>% filter(State=="FLORIDA")
+df <- df %>% filter(StateNum %in% ind$StateNum)
+# nrow(df[df$SpeciesTotal==0,])## ensuring this is presence-only data
+nyears.per.spproute <- df %>% 
+  group_by(CountryNum, StateNum, Route, AOU) %>% 
+  summarise(nyears=n()) # number of years of observations per species per route (by country/state route id)
+hist(nyears.per.spproute$nyears)
+
+nyears.per.bcrstate <- df %>% 
+  group_by(Stratum, CountryNum, StateNum, AOU) %>% 
+  summarise(nyears=n()) # number of years of observations per species per stratum & state)
+hist(nyears.per.bcrstate$nyears)
+```
+
+
+```{r }
+nbirds.per.stratum <- df %>% 
+  group_by(Stratum, AOU, Year) %>% 
+  summarise(total.obs=sum(SpeciesTotal)) #total count of specices per stratum
+
+hist(nbirds.per.stratum$total.obs)
+
+max(nbirds.per.stratum$total.obs) ## this is probably right but make sure its a fkn duck or something
+nbirds.per.stratum$AOU %>% unique() ## unique birds here
+```
+
+```{r }
+nbirds.per.state <- df %>% 
+  group_by(CountryNum, StateNum, AOU, Year) %>% 
+  summarise(total.obs=sum(SpeciesTotal)) # 
+unique.spp <- nbirds.per.state$AOU %>% unique() ## unique birds here by AOU number
+
+species_list %>% filter(AOU %in% unique.spp) %>% dplyr::select(common_name, AOU, genus, species) %>% glimpse()
+```
